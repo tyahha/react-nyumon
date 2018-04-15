@@ -1,17 +1,18 @@
 import React from 'react'
+import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import tasksReducer from './reducers/tasks'
-import TodoApp from './components/TodoApp'
+import TodoApp from './containers/TodoApp'
 import { render } from 'react-dom'
 
 const store = createStore(tasksReducer)
 
-function renderApp(store) {
-  render(
-    <TodoApp store={store} />,
-    document.getElementById('root')
-  )
-}
+render(
+  <Provider store={store}>
+    <TodoApp />
+  </Provider>,
+  document.getElementById('root')
+)
 
-store.subscribe(() => renderApp(store))
-renderApp(store)
+//store.subscribe(() => renderApp(store))
+//renderApp(store)
